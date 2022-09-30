@@ -1,5 +1,6 @@
-//https://en.wikipedia.org/wiki/PID_controller
-
+/*https://en.wikipedia.org/wiki/PID_controller
+add a sensor of some kind and replace "inputValue" with that sensors data such as temputure.
+*/
 
 double kp = 0; //Proportional
 double ki = 0; //Integral
@@ -17,7 +18,6 @@ float dt = 0.01;
 void setup() {
    Serial.begin(115200);
    delay(250);
-
 }
 
 void loop() {
@@ -27,13 +27,15 @@ void loop() {
   rateError = (error - lastError) / dt; // rate of error 
   output = (kp * error) + (ki * cumError) + (kd * rateError); // ouput of the PID to be used to control a thermostat. 
 
+  lastError = error;
 
 //print all the values.
-Serial.println(dt);
-Serial.println(setpoint);
-Serial.println(error);
-Serial.println(cumError);
-Serial.println(rateError);
-Serial.println(lastError);
+Serial.print(inputValue);
+Serial.print(dt);
+Serial.print(setpoint);
+Serial.print(error);
+Serial.print(cumError);
+Serial.print(rateError);
+Serial.print(lastError);
 Serial.println(output);
 }
