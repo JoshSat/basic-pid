@@ -13,7 +13,7 @@ float output;
 
 float inputValue; //Replace this with the temperature.
 
-float dt = 0.01;
+float dt = 0.01; //setting time for this example.
 
 void setup() {
    Serial.begin(115200);
@@ -25,7 +25,7 @@ void loop() {
   error = setpoint - inputValue; //take a input such as a temperature.
   cumError += error * dt; //Amount of error that has accumulated 
   rateError = (error - lastError) / dt; // rate of error 
-  output = (kp * error) + (ki * cumError) + (kd * rateError); // ouput of the PID to be used to control a thermostat. 
+  output = (kp * error) + (ki * cumError) + (kd * rateError); // ouput of the PID to be used to control a thermostat. Output would need to be something that your device can use for switching on or off heat.
 
   lastError = error;
 
